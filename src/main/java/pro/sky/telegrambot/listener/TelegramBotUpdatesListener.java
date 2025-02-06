@@ -14,12 +14,9 @@ import java.util.List;
 
 @Service
 public class TelegramBotUpdatesListener implements UpdatesListener {
-
     private Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
-
     @Autowired
     private TelegramBot telegramBot;
-
     @PostConstruct
     public void init() {
         telegramBot.setUpdatesListener(this);

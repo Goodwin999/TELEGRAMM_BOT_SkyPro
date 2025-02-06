@@ -21,6 +21,14 @@ public class NotificationTask {
 
     @Column(nullable = false)
     private LocalDateTime notificationDateTime;
+    public NotificationTask() {
+    }
+
+    public NotificationTask(Long chatId, String message, LocalDateTime notificationDateTime) {
+        this.chatId = chatId;
+        this.message = message;
+        this.notificationDateTime = notificationDateTime;
+    }
 
     public Long getId() {
         return id;

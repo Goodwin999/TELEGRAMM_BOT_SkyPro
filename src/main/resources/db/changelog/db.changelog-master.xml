@@ -7,3 +7,4 @@
 
     <include file="db/changelog/changes/001-create-notification-task.xml"/>
 </databaseChangeLog>
+

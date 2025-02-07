@@ -22,20 +22,15 @@ public class NotificationTaskService {
         this.notificationTaskRepository = notificationTaskRepository;
     }
 
-    public String parseAndSaveNotification(String message) {
+    public String parseAndSaveNotification(Long chatId, String message) {
         Pattern pattern = Pattern.compile("(\\d{2}\\.\\d{2}\\.\\d{4}\\s\\d{2}:\\d{2})(\\s+)(.+)");
         Matcher matcher = pattern.matcher(message);
 
         if (matcher.find()) {
             String dateTimeStr = matcher.group(1);
             String notificationMessage = matcher.group(3);
-
             LocalDateTime notificationDateTime = LocalDateTime.parse(dateTimeStr, DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
-
-            NotificationTask notificationTask = new NotificationTask();
-            notificationTask.setNotificationDateTime(notificationDateTime);
-            notificationTask.setMessage(notificationMessage);
-
+            NotificationTask notificationTask = new NotificationTask(chatId, notificationMessage, notificationDateTime);
             notificationTaskRepository.save(notificationTask);
             return "Задача успешно добавлена!";
         } else {

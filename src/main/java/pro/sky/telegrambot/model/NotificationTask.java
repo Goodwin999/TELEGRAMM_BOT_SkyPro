@@ -45,6 +45,11 @@ public class NotificationTask {
     public LocalDateTime getNotificationDateTime() {
         return notificationDateTime;
     }
+
+    public void setNotificationDateTime(LocalDateTime notificationDateTime) {
+        this.notificationDateTime = notificationDateTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,10 +57,12 @@ public class NotificationTask {
         NotificationTask that = (NotificationTask) o;
         return Objects.equals(id, that.id) && Objects.equals(chatId, that.chatId) && Objects.equals(messageText, that.messageText) && Objects.equals(notificationDateTime, that.notificationDateTime);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id, chatId, messageText, notificationDateTime);
     }
+
     @Override
     public String toString() {
         return "NotificationTask{" +
@@ -65,5 +72,6 @@ public class NotificationTask {
                 ", уведомление для даты и времени=" + notificationDateTime +
                 '}';
     }
+
 
 }

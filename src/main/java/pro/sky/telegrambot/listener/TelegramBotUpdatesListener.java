@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import pro.sky.telegrambot.model.NotificationTask;
 import pro.sky.telegrambot.repository.NotificationTaskRepository;
 import pro.sky.telegrambot.service.MessageSender;
+
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,8 +25,9 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     private final NotificationTaskRepository notificationTaskRepository;
     private final String WELCOME_MESSAGE = "Привет Меченый! Короче, я тебя спас и в благородства играть не буду, выполни для меня пару заданий, и мы в расчете! ";
     private final String WRONG_FORMAT_MESSAGE = "Неверный формат сообщения! ";
+    private final String NEW_NOTIFICATION_SAVED_MESSAGE = "Спасибо, напоминание добавлено!";
     private final Pattern INCOMING_MESSAGE_PATTERN = Pattern.compile("(\\d{2}\\.\\d{2}\\.\\d{4}\\s\\d{2}:\\d{2})(\\s+)(.+)");
-private final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    private final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
 
     public TelegramBotUpdatesListener(MessageSender messageSender, TelegramBot telegramBot, NotificationTaskRepository notificationTaskRepository) {
@@ -59,7 +61,7 @@ private final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd.MM
 
                     String notificationMessage = matcher.group(3);
 
-                    NotificationTask notificationTask=new NotificationTask();
+                    NotificationTask notificationTask = new NotificationTask();
                     notificationTask.setChatId(chatId);
 
                     notificationTask.setMessageText(notificationMessage);
@@ -67,7 +69,7 @@ private final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd.MM
 
                     notificationTask = notificationTaskRepository.save(notificationTask);
 
-
+                    messageSender.send(chatId, NEW_NOTIFICATION_SAVED_MESSAGE);
                     logger.info("Новое уведомление с идентификатором успешно сохранено {} ", notificationTask.getId());
                 } else {
                     messageSender.send(chatId, WRONG_FORMAT_MESSAGE);

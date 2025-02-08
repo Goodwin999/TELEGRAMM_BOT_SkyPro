@@ -25,7 +25,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     @Override
     public int process(List<Update> updates) {
         updates.forEach(update -> {
-            logger.info("Processing update: {}", update);
+            logger.info("Обновление обработки: {}", update);
             // Проверяем, является ли текст сообщения командой /start
             if (update.message() != null && update.message().text().equals("/start")) {
                 long chatId = update.message().chat().id();  // Получаем идентификатор чата

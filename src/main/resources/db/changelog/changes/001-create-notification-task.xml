@@ -13,7 +13,7 @@
             <column name="chat_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="message" type="text">
+            <column name="message_text" type="text">
                 <constraints nullable="false"/>
             </column>
             <column name="notification_date_time" type="timestamp">

@@ -18,8 +18,8 @@ public class MessageSenderImpl implements MessageSender {
     }
 
     @Override
-    public void send(long chatId, String messageText) {
-        SendMessage message = new SendMessage(chatId, messageText);
+    public void send(long chatId, String messages) {
+        SendMessage message = new SendMessage(chatId, messages);
 
         SendResponse response = telegramBot.execute(message);
         if (response.isOk()) {

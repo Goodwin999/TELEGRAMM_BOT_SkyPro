@@ -64,7 +64,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     NotificationTask notificationTask = new NotificationTask();
                     notificationTask.setChatId(chatId);
 
-                    notificationTask.setMessageText(notificationMessage);
+                    notificationTask.setMessage(notificationMessage);
                     notificationTask.setNotificationDateTime(notificationDateTime);
 
                     notificationTask = notificationTaskRepository.save(notificationTask);

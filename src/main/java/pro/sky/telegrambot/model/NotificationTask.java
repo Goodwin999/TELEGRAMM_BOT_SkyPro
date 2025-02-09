@@ -14,7 +14,7 @@ public class NotificationTask {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long chatId;
-    private String messageText;
+    private String message;
     private LocalDateTime notificationDateTime;
 
 
@@ -34,12 +34,12 @@ public class NotificationTask {
         this.chatId = chatId;
     }
 
-    public String getMessageText() {
-        return messageText;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public LocalDateTime getNotificationDateTime() {
@@ -55,12 +55,12 @@ public class NotificationTask {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NotificationTask that = (NotificationTask) o;
-        return Objects.equals(id, that.id) && Objects.equals(chatId, that.chatId) && Objects.equals(messageText, that.messageText) && Objects.equals(notificationDateTime, that.notificationDateTime);
+        return Objects.equals(id, that.id) && Objects.equals(chatId, that.chatId) && Objects.equals(message, that.message) && Objects.equals(notificationDateTime, that.notificationDateTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, chatId, messageText, notificationDateTime);
+        return Objects.hash(id, chatId, message, notificationDateTime);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class NotificationTask {
         return "NotificationTask{" +
                 "id=" + id +
                 ", номер чата=" + chatId +
-                ", текст сообщения='" + messageText + '\'' +
+                ", текст сообщения='" + message + '\'' +
                 ", уведомление для даты и времени=" + notificationDateTime +
                 '}';
     }

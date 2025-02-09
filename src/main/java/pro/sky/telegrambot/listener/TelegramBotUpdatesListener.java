@@ -70,7 +70,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     notificationTask = notificationTaskRepository.save(notificationTask);
 
                     messageSender.send(chatId, NEW_NOTIFICATION_SAVED_MESSAGE);
-                    logger.info("Новое уведомление с идентификатором успешно сохранено {} ", notificationTask.getId());
+                    logger.info("Новое уведомление с идентификатором {} успешно сохранено ", notificationTask.getId());
                 } else {
                     messageSender.send(chatId, WRONG_FORMAT_MESSAGE);
 
